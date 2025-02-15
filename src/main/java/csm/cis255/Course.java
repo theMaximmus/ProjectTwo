@@ -84,7 +84,7 @@ public class Course {
     }
 
     private boolean isStudentEligible(Student student) {
-        if (student.isTuitionPaid() && student.is) {
+        if (student.isTuitionPaid() && this.isAlreadyOnWaitlist(student)) {
             return true;
         } else {
             return false;
