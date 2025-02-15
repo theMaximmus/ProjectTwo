@@ -108,7 +108,13 @@ public class Course {
         }
     }
 
-    private boolean isAlreadyOnWaitlist() {
+    private boolean isAlreadyOnWaitlist(Student prospectiveStudent) {
+        for (Student student: this.waitlist) {
+            if (student.equals(prospectiveStudent)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
