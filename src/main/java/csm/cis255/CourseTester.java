@@ -1,3 +1,5 @@
+package csm.cis255;
+
 import csm.cis255.Course;
 import csm.cis255.Student;
 

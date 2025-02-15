@@ -30,17 +30,15 @@ public class Course {
         return roster;
     }
 
-    public void setRoster(Student[] roster) {
-        this.roster = roster;
-    }
+    // There is no need for setRoster() method as we won't directly change a list of students on the roaster
+    // with a different one (that's already assembled)
 
     public Student[] getWaitlist() {
         return waitlist;
     }
 
-    public void setWaitlist(Student[] waitlist) {
-        this.waitlist = waitlist;
-    }
+    // There is no need for setWaitlist() method as we won't directly change a list of students on the waitlist
+    // with a different one (that's already assembled)
 
     public int getMaximumStudentsOnRoster() {
         return maximumStudentsOnRoster;
@@ -71,10 +69,10 @@ public class Course {
     public String toString() {
         return "Course:\n" +
                 "\tName: " + name + "\n" +
-                "\tCurrent amount of Students on Roster: " + this.roster.length + "\n" +
+                "\tCurrent amount of Students on Roster: " + this.getCurrentStudentsEnrolled() + "\n" +
                 "\tMaximum amount of Students on Roster: " + maximumStudentsOnRoster + "\n" +
                 "\tRoster: " + Arrays.toString(roster) + "\n" +
-                "\tCurrent amount of Students on Waitlist: " + maximumStudentsOnWaitlist + "\n" +
+                "\tCurrent amount of Students on Waitlist: " + this.getCurrentStudentsOnWaitlist() + "\n" +
                 "\tMaximum amount of Students on Waitlist: " + maximumStudentsOnWaitlist + "\n" +
                 "\tWaitlist: " + Arrays.toString(waitlist);
     }
