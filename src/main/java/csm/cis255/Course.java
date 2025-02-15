@@ -84,6 +84,15 @@ public class Course {
         }
     }
 
+    /**
+     * A dropStudent method removes a Student from the Course.
+     * this method drops a student from the course
+     * if the student is not on the roster or waitlist, the student cannot be dropped
+     * if the student is on the waitlist, remove the student from the waitlist
+     * if the student is on the roster, remove the student from the roster
+     * @param student
+     * @return
+     */
     public boolean dropStudent (Student student) {
         if ( 1 == 1 ) {
             return true;
