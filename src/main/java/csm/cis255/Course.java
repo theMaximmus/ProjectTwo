@@ -67,6 +67,10 @@ public class Course {
     // TODO: Finish method
     /**
      * An addStudent method adds a Student to the Course.
+     * A student is eligible to add:
+     * if there is room on the roster, add the student to the roster,
+     * if the roster is full but there is room on the waitlist, add the student to the waitlist,
+     * if there is no room on the roster or waitlist, do not add the student.
      * @param student Student to be added to the course
      * @return A boolean value whether student is added or not
      */
@@ -106,18 +110,10 @@ public class Course {
     // TODO: Use Ternary conditional operator: "? a : b" (?) or something different
     /**
      * Checks whether there is room in the course's seats.
-     * A student is eligible to add:
-     * if there is room on the roster, add the student to the roster,
-     * if the roster is full but there is room on the waitlist, add the student to the waitlist,
-     * if there is no room on the roster or waitlist, do not add the student.
      * @return A boolean value whether there is room or not
      */
     private boolean isRoomInRoster() {
-        if (this.getCurrentStudentsEnrolled() < this.getMaximumStudentsOnRoster()) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.getCurrentStudentsEnrolled() < this.getMaximumStudentsOnRoster();
     }
 
     /**
@@ -125,11 +121,7 @@ public class Course {
      * @return A boolean value whether there is room or not
      */
     private boolean isRoomOnWaitlist() {
-        if (this.getCurrentStudentsOnWaitlist() < this.getMaximumStudentsOnWaitlist()) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.getCurrentStudentsOnWaitlist() < this.getMaximumStudentsOnWaitlist();
     }
 
     /**
