@@ -81,6 +81,22 @@ public class Course {
         }
     }
 
+    private boolean isStudentEligible(Student student) {
+        if ( 1 == 1 ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isRoom() {
+        if ( 1 == 1 ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // TODO: Finish the method
     @Override
     public String toString() {
