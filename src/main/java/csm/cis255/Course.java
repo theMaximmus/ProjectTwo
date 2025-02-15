@@ -66,7 +66,9 @@ public class Course {
 
     // TODO: Finish method
     public boolean addStudent(Student student) {
-        if (this.isStudentEligible(student) && this.isRoom(student)) {
+        if (this.isStudentEligible(student) && this.isRoomInRoster(student)) {
+            return true;
+        } else if (this.isStudentEligible(student) && this.isRoomOnWaitlist(student)) {
             return true;
         } else {
             return false;
@@ -82,7 +84,7 @@ public class Course {
     }
 
     private boolean isStudentEligible(Student student) {
-        if ( 1 == 1 ) {
+        if (student.isTuitionPaid() && student.is) {
             return true;
         } else {
             return false;
@@ -104,6 +106,10 @@ public class Course {
         } else {
             return false;
         }
+    }
+
+    private boolean isAlreadyOnWaitlist() {
+        return false;
     }
 
     // TODO: Finish the method
