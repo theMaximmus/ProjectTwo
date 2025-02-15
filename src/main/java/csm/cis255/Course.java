@@ -65,10 +65,15 @@ public class Course {
     }
 
     // TODO: Finish method
+    /**
+     * An addStudent method adds a Student to the Course.
+     * @param student Student to be added to the course
+     * @return A boolean value whether student is added or not
+     */
     public boolean addStudent(Student student) {
-        if (this.isStudentEligible(student) && this.isRoomInRoster(student)) {
+        if (this.isStudentEligible(student) && this.isRoomInRoster()) {
             return true;
-        } else if (this.isStudentEligible(student) && this.isRoomOnWaitlist(student)) {
+        } else if (this.isStudentEligible(student) && this.isRoomOnWaitlist()) {
             return true;
         } else {
             return false;
@@ -83,8 +88,15 @@ public class Course {
         }
     }
 
+    /**
+     * Checks whether student is eligible for this course. A student is eligible to add the course if:
+     * they have paid tuition, and
+     * they are not already enrolled on the roster or waitlist.
+     * @param student Student to be checked
+     * @return A boolean value whether student is eligible for the course or not
+     */
     private boolean isStudentEligible(Student student) {
-        if (student.isTuitionPaid() && this.isAlreadyOnWaitlist(student)) {
+        if (student.isTuitionPaid() && !this.isAlreadyOnWaitlist(student)) {
             return true;
         } else {
             return false;
@@ -92,7 +104,15 @@ public class Course {
     }
 
     // TODO: Use Ternary conditional operator: "? a : b" (?) or something different
-    private boolean isRoomInRoster(Student student) {
+    /**
+     * Checks whether there is room in the course's seats.
+     * A student is eligible to add:
+     * if there is room on the roster, add the student to the roster,
+     * if the roster is full but there is room on the waitlist, add the student to the waitlist,
+     * if there is no room on the roster or waitlist, do not add the student.
+     * @return A boolean value whether there is room or not
+     */
+    private boolean isRoomInRoster() {
         if (this.getCurrentStudentsEnrolled() < this.getMaximumStudentsOnRoster()) {
             return true;
         } else {
@@ -100,7 +120,11 @@ public class Course {
         }
     }
 
-    private boolean isRoomOnWaitlist(Student student) {
+    /**
+     * Checks whether there is room in the course's waitlist
+     * @return A boolean value whether there is room or not
+     */
+    private boolean isRoomOnWaitlist() {
         if (this.getCurrentStudentsOnWaitlist() < this.getMaximumStudentsOnWaitlist()) {
             return true;
         } else {
@@ -108,6 +132,11 @@ public class Course {
         }
     }
 
+    /**
+     * Checks if student is already on the waitlist
+     * @param prospectiveStudent Student to be checked for
+     * @return A boolean value whether the student is on the list or not
+     */
     private boolean isAlreadyOnWaitlist(Student prospectiveStudent) {
         for (Student student: this.waitlist) {
             if (student.equals(prospectiveStudent)) {
