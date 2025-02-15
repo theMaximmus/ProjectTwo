@@ -64,6 +64,23 @@ public class Course {
         return this.waitlist.length;
     }
 
+    // TODO: Finish method
+    public boolean addStudent(Student student) {
+        if ( 1 == 1 ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean dropStudent (Student student) {
+        if ( 1 == 1 ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // TODO: Finish the method
     @Override
     public String toString() {
