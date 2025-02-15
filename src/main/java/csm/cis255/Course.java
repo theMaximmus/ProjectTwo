@@ -66,7 +66,7 @@ public class Course {
 
     // TODO: Finish method
     public boolean addStudent(Student student) {
-        if ( 1 == 1 ) {
+        if (this.isStudentEligible(student) && this.isRoom(student)) {
             return true;
         } else {
             return false;
@@ -89,8 +89,17 @@ public class Course {
         }
     }
 
-    private boolean isRoom() {
-        if ( 1 == 1 ) {
+    // TODO: Use Ternary conditional operator: "? a : b" (?) or something different
+    private boolean isRoomInRoster(Student student) {
+        if (this.getCurrentStudentsEnrolled() < this.getMaximumStudentsOnRoster()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean isRoomOnWaitlist(Student student) {
+        if (this.getCurrentStudentsOnWaitlist() < this.getMaximumStudentsOnWaitlist()) {
             return true;
         } else {
             return false;
