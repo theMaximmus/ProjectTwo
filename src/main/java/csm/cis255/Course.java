@@ -68,8 +68,8 @@ public class Course {
     /**
      * An addStudent method adds a Student to the Course.
      * A student is eligible to add:
-     * if there is room on the roster, add the student to the roster,
-     * if the roster is full but there is room on the waitlist, add the student to the waitlist,
+     * if there is room on the roster, add the student to the roster;
+     * if the roster is full but there is room on the waitlist, add the student to the waitlist;
      * if there is no room on the roster or waitlist, do not add the student.
      * @param student Student to be added to the course
      * @return A boolean value whether student is added or not
@@ -86,12 +86,12 @@ public class Course {
 
     /**
      * A dropStudent method removes a Student from the Course.
-     * this method drops a student from the course
-     * if the student is not on the roster or waitlist, the student cannot be dropped
-     * if the student is on the waitlist, remove the student from the waitlist
-     * if the student is on the roster, remove the student from the roster
-     * @param student
-     * @return
+     * This method drops a student from the course:
+     * if the student is not on the roster or waitlist, the student cannot be dropped;
+     * if the student is on the waitlist, remove the student from the waitlist;
+     * if the student is on the roster, remove the student from the roster.
+     * @param student Student to be dropped from the course
+     * @return A boolean value whether student was dropped or not
      */
     public boolean dropStudent (Student student) {
         if ( 1 == 1 ) {
@@ -154,10 +154,10 @@ public class Course {
         return "Course:\n" +
                 "\tName: " + name + "\n" +
                 "\tCurrent amount of Students on Roster: " + this.getCurrentStudentsEnrolled() + "\n" +
-                "\tMaximum amount of Students on Roster: " + maximumStudentsOnRoster + "\n" +
+                "\tMaximum amount of Students on Roster: " + this.maximumStudentsOnRoster + "\n" +
                 "\tRoster: " + Arrays.toString(roster) + "\n" +
                 "\tCurrent amount of Students on Waitlist: " + this.getCurrentStudentsOnWaitlist() + "\n" +
-                "\tMaximum amount of Students on Waitlist: " + maximumStudentsOnWaitlist + "\n" +
+                "\tMaximum amount of Students on Waitlist: " + this.maximumStudentsOnWaitlist + "\n" +
                 "\tWaitlist: " + Arrays.toString(waitlist);
     }
 }
