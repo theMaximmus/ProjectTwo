@@ -76,8 +76,10 @@ public class Course {
      */
     public boolean addStudent(Student student) {
         if (this.isStudentEligible(student) && this.isRoomInRoster()) {
+            this.roster = addStudentToArray(this.roster, student);
             return true;
         } else if (this.isStudentEligible(student) && this.isRoomOnWaitlist()) {
+            this.waitlist = addStudentToArray(this.waitlist, student);
             return true;
         } else {
             return false;
@@ -94,11 +96,25 @@ public class Course {
      * @return A boolean value whether student was dropped or not
      */
     public boolean dropStudent (Student student) {
-        if ( 1 == 1 ) {
-            return true;
-        } else {
-            return false;
+        if(!this.isAlreadyOnRoster(student) && !this.isAlreadyOnWaitlist(student)){
+            return false; //cannot be dropped
         }
+        if(this.isAlreadyOnWaitlist(student)){
+            this.waitlist = removeStudentFromArray(this.waitlist, student);
+            return true;
+        }
+        if(this.isAlreadyOnRoster(student)){
+            this.roster = removeStudentFromArray(this.roster, student);
+
+            //if waitlist not empty, add waitlist student 
+            if(this.waitlist.length > 0){
+                Student firstWaitlisted = this.waitlist[0];
+                this.waitlist = removeStudentFromArray(this.waitlist, firstWaitlisted);
+                this.roster = addStudentToArray(this.roster, firstWaitlisted);
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -109,7 +125,7 @@ public class Course {
      * @return A boolean value whether student is eligible for the course or not
      */
     private boolean isStudentEligible(Student student) {
-        if (student.isTuitionPaid() && !this.isAlreadyOnWaitlist(student)) {
+        if (student.isTuitionPaid() && !this.isAlreadyOnWaitlist(student) && !this.isAlreadyOnRoster(student)) {
             return true;
         } else {
             return false;
@@ -148,6 +164,41 @@ public class Course {
         return false;
     }
 
+    private boolean isAlreadyOnRoster(Student prospectiveStudent){
+        for(Student student: this.roster){
+            if(student.equals(prospectiveStudent)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //helper to add studenbt
+    private Student[] addStudentToArray(Student[] array, Student student) {
+        //array empty, make new array containing student
+        if (array == null) {
+            return new Student[]{student};
+        }
+        Student[] newArray = Arrays.copyOf(array, array.length + 1);
+        newArray[array.length] = student;
+        return newArray;
+    }
+
+    //helper to drop student
+    private Student[] removeStudentFromArray(Student[] array, Student student) {
+        if (array == null || array.length == 0){
+            return array;
+        }
+        Student[] newArray = new Student[array.length - 1];
+        int index = 0;
+        for (Student s : array) {
+            if (!s.equals(student)) {
+                newArray[index++] = s;
+            }
+        }
+        return newArray;
+    }
+
     // TODO: Finish the method
     @Override
     public String toString() {
@@ -155,9 +206,9 @@ public class Course {
                 "\tName: " + name + "\n" +
                 "\tCurrent amount of Students on Roster: " + this.getCurrentStudentsEnrolled() + "\n" +
                 "\tMaximum amount of Students on Roster: " + this.maximumStudentsOnRoster + "\n" +
-                "\tRoster: " + Arrays.toString(roster) + "\n" +
+                "\tRoster: " +(roster.length > 0 ? Arrays.toString(roster) : "[]") + "\n" + //only if roster is not empty
                 "\tCurrent amount of Students on Waitlist: " + this.getCurrentStudentsOnWaitlist() + "\n" +
                 "\tMaximum amount of Students on Waitlist: " + this.maximumStudentsOnWaitlist + "\n" +
-                "\tWaitlist: " + Arrays.toString(waitlist);
+                "\tWaitlist: " + (waitlist.length > 0 ? Arrays.toString(waitlist): "[]"); //only if waitlist is not empty
     }
 }
